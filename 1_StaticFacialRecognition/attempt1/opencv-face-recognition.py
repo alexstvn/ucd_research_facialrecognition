@@ -5,11 +5,11 @@ import cv2
 import os # for reading directories + paths
 import numpy as np # convert python lists to numpy arrays (for face recognizers)
 
-####################    TRAINING DATA       #################### 
+####################    PREP DATA       #################### 
 # Step 1: Define labels (keep 0 blank)
 subjects = ["", "Alex Stevenson"]
 
-# Step 2: Data preparation
+# Step 2: Detect Faces
 # function to detect face using OpenCV (using LBP face detector)
 def detect_face(img):
     #convert the test image to gray image as opencv face detector expects gray images
@@ -106,3 +106,15 @@ def prepare_training_data(data_folder_path):
     cv2.destroyAllWindows()
     
     return faces, labels
+
+#let's first prepare our training data
+#data will be in two lists of same size
+#one list will contain all the faces
+#and other list will contain respective labels for each face
+print("Preparing data...")
+faces, labels = prepare_training_data("training-data")
+print("Data prepared")
+
+#print total faces and labels
+print("Total faces: ", len(faces))
+print("Total labels: ", len(labels))
