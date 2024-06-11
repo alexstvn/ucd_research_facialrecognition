@@ -1,4 +1,4 @@
-# ATUHORED BY GitHub user Ramiz Raja (@informramiz)
+# AUTHORED BY GitHub user Ramiz Raja (@informramiz)
 # GITHUB SOURCE: https://github.com/informramiz/opencv-face-recognition-python/
 
 ####################    IMPORT STATEMENTS   #################### 
