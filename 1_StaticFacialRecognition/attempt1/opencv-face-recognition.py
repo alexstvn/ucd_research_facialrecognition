@@ -118,3 +118,18 @@ print("Data prepared")
 #print total faces and labels
 print("Total faces: ", len(faces))
 print("Total labels: ", len(labels))
+
+####################    TRAINING DATA       #################### 
+# PICK 1 of 3
+# LBPH face recognizer 
+face_recognizer = cv2.face.createLBPHFaceRecognizer()
+
+# EigenFaceRecognizer  
+#face_recognizer = cv2.face.createEigenFaceRecognizer()
+
+# FisherFaceRecognizer  
+#face_recognizer = cv2.face.createFisherFaceRecognizer()
+
+#train our face recognizer of our training faces
+face_recognizer.train(faces, np.array(labels))
+
