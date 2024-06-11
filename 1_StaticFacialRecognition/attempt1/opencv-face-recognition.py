@@ -1,3 +1,4 @@
+# ATUHORED BY GitHub user Ramiz Raja (@informramiz)
 # GITHUB SOURCE: https://github.com/informramiz/opencv-face-recognition-python/
 
 ####################    IMPORT STATEMENTS   #################### 
@@ -133,3 +134,54 @@ face_recognizer = cv2.face.createLBPHFaceRecognizer()
 #train our face recognizer of our training faces
 face_recognizer.train(faces, np.array(labels))
 
+####################    PREDICTING OUTPUT       #################### 
+#function to draw rectangle on image 
+#according to given (x, y) coordinates and 
+#given width and heigh
+def draw_rectangle(img, rect):
+    (x, y, w, h) = rect
+    cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
+    
+#function to draw text on give image starting from
+#passed (x, y) coordinates. 
+def draw_text(img, text, x, y):
+    cv2.putText(img, text, (x, y), cv2.FONT_HERSHEY_PLAIN, 1.5, (0, 255, 0), 2)
+
+#this function recognizes the person in image passed
+#and draws a rectangle around detected face with name of the 
+#subject
+def predict(test_img):
+    #make a copy of the image as we don't want to chang original image
+    img = test_img.copy()
+    #detect face from the image
+    face, rect = detect_face(img)
+
+    #predict the image using our face recognizer 
+    label= face_recognizer.predict(face)
+    #get name of respective label returned by face recognizer
+    label_text = subjects[label]
+    
+    #draw a rectangle around face detected
+    draw_rectangle(img, rect)
+    #draw name of predicted person
+    draw_text(img, label_text, rect[0], rect[1]-5)
+    
+    return img
+
+# POSSIBLY REPLACE/ADJUST THIS
+print("Predicting images...")
+
+#load test images
+test_img1 = cv2.imread("test-data/test1.jpg")
+test_img2 = cv2.imread("test-data/test2.jpg")
+
+#perform a prediction
+predicted_img1 = predict(test_img1)
+predicted_img2 = predict(test_img2)
+print("Prediction complete")
+
+#display both images
+cv2.imshow(subjects[1], predicted_img1)
+cv2.imshow(subjects[2], predicted_img2)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
