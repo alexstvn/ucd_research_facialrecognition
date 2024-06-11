@@ -8,7 +8,7 @@ import numpy as np # convert python lists to numpy arrays (for face recognizers)
 
 ####################    PREP DATA       #################### 
 # Step 1: Define labels (keep 0 blank)
-subjects = ["", "Alex Stevenson"]
+subjects = ["", "Alex Stevenson", "Emily Stevenson", "Chamara Sandeepa"]
 
 # Step 2: Detect Faces
 # function to detect face using OpenCV (using LBP face detector)
